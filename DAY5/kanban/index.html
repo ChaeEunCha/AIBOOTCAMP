@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>cokanban</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="toast" class="toast hidden"></div>
+
+<!-- 인증 화면 -->
+<section id="auth-screen" class="auth-screen hidden">
+  <div class="auth-card">
+    <h1>cokanban</h1>
+    <div class="auth-tabs">
+      <button id="tab-login" class="auth-tab active" type="button">로그인</button>
+      <button id="tab-signup" class="auth-tab" type="button">회원가입</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <label>이메일
+        <input type="email" id="login-email" required autocomplete="email" />
+      </label>
+      <label>비밀번호
+        <input type="password" id="login-password" required autocomplete="current-password" />
+      </label>
+      <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+
+    <form id="signup-form" class="auth-form hidden">
+      <label>이름
+        <input type="text" id="signup-name" required autocomplete="name" />
+      </label>
+      <label>이메일
+        <input type="email" id="signup-email" required autocomplete="email" />
+      </label>
+      <label>비밀번호
+        <input type="password" id="signup-password" required autocomplete="new-password" minlength="6" />
+      </label>
+      <button type="submit" class="btn btn-primary">회원가입</button>
+    </form>
+  </div>
+</section>
+
+<!-- 보드 화면 -->
+<div id="board-screen" class="board-screen hidden">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span id="user-email" class="user-email"></span>
+      <button id="logout-btn" class="btn btn-ghost" type="button">로그아웃</button>
+    </div>
+
+    <button id="add-card-btn" class="btn btn-primary add-card-btn" type="button">+ 할 일 추가</button>
+  </aside>
+
+  <main class="main-panel">
+    <div class="board-columns" id="board-columns">
+      <section class="board-column" data-status="todo">
+        <h2 class="board-column-title">할 일</h2>
+        <ul class="card-list" data-status="todo"></ul>
+      </section>
+      <section class="board-column" data-status="in_progress">
+        <h2 class="board-column-title">진행 중</h2>
+        <ul class="card-list" data-status="in_progress"></ul>
+      </section>
+      <section class="board-column" data-status="done">
+        <h2 class="board-column-title">완료</h2>
+        <ul class="card-list" data-status="done"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- 카드 상세 모달 -->
+<div id="card-modal-overlay" class="modal-overlay hidden">
+  <div id="card-detail" class="card-detail">
+    <button id="modal-close-btn" class="modal-close-btn" type="button" aria-label="닫기">&times;</button>
+
+    <label class="field">
+      <span class="field-label">제목</span>
+      <input type="text" id="detail-title" />
+    </label>
+
+    <div class="field-row">
+      <label class="field">
+        <span class="field-label">진행 상태</span>
+        <select id="detail-status">
+          <option value="todo">할 일</option>
+          <option value="in_progress">진행 중</option>
+          <option value="done">완료</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">우선순위</span>
+        <select id="detail-priority">
+          <option value="low">낮음</option>
+          <option value="medium">중간</option>
+          <option value="high">높음</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="field">
+      <span class="field-label">담당자</span>
+      <select id="detail-assignee">
+        <option value="">미지정</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span class="field-label">내용</span>
+      <textarea id="detail-content" rows="8"></textarea>
+    </label>
+
+    <div class="detail-actions">
+      <button id="save-card-btn" class="btn btn-primary" type="button">저장</button>
+      <button id="delete-card-btn" class="btn btn-danger" type="button">삭제</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

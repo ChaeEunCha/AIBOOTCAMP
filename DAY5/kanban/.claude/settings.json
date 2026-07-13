@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/chachaeeun/project/DAY5/kanban/.claude/hooks/deploy_checklist.sh",
+            "timeout": 15,
+            "statusMessage": "배포 전 체크리스트 점검 중..."
+          }
+        ]
+      }
+    ]
+  }
+}

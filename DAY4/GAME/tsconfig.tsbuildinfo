@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/types.ts","./src/config/constants.ts","./src/logic/bag.ts","./src/logic/board.ts","./src/logic/piece.ts","./src/logic/tetrominoes.ts","./src/scenes/gameoverscene.ts","./src/scenes/mainscene.ts","./src/scenes/titlescene.ts"],"version":"5.9.3"}

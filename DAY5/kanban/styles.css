@@ -1,0 +1,330 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1a1a1a;
+}
+
+.hidden { display: none !important; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d2d2d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.toast.error { background: #c0392b; }
+
+/* Auth */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 10px;
+  width: 340px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.auth-card h1 {
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+.auth-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  border-bottom: 2px solid transparent;
+}
+.auth-tab.active {
+  color: #1a73e8;
+  border-bottom-color: #1a73e8;
+  font-weight: 600;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+}
+.auth-form input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn-primary {
+  background: #1a73e8;
+  color: #fff;
+}
+.btn-primary:hover { background: #1558b0; }
+.btn-ghost {
+  background: none;
+  color: #666;
+  border: 1px solid #ccc;
+}
+.btn-ghost:hover { background: #eee; }
+.btn-danger {
+  background: #fff;
+  color: #c0392b;
+  border: 1px solid #c0392b;
+}
+.btn-danger:hover { background: #fdecea; }
+
+/* Board layout */
+.board-screen {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+}
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-email {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.add-card-btn {
+  width: 100%;
+}
+
+/* Board columns */
+.board-columns {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+}
+.board-column {
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+  background: #eef0f3;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 64px);
+}
+.board-column-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 4px 4px 12px;
+  color: #333;
+}
+.board-column.drag-over {
+  outline: 2px dashed #1a73e8;
+  outline-offset: -2px;
+}
+
+.card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 40px;
+}
+.card-item {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: grab;
+  transition: background 0.1s;
+}
+.card-item:hover { background: #f0f6ff; }
+.card-item.selected {
+  border-color: #1a73e8;
+  background: #eaf1fd;
+}
+.card-item.dragging {
+  opacity: 0.4;
+}
+.card-item.drag-over-top {
+  border-top: 2px solid #1a73e8;
+}
+.card-item.drag-over-bottom {
+  border-bottom: 2px solid #1a73e8;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-meta {
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+  color: #888;
+}
+.priority-badge {
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.priority-low { background: #e3f2e1; color: #2e7d32; }
+.priority-medium { background: #fff4e0; color: #b26a00; }
+.priority-high { background: #fdeaea; color: #c0392b; }
+
+.card-list-empty {
+  color: #aaa;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Main panel */
+.main-panel {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+/* Card detail modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  padding: 20px;
+}
+.card-detail {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.modal-close-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.field-label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+}
+.field-row {
+  display: flex;
+  gap: 16px;
+}
+#detail-title {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+#detail-status, #detail-priority, #detail-assignee {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+#detail-content {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
