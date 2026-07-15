@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1c1c1c;
+
+  --color-seoul-teal: #22bfb4;
+  --color-seoul-teal-dark: #159a91;
+  --color-seoul-orange: #ff7a45;
+  --color-seoul-orange-light: #fda255;
+  --color-seoul-green: #52c96b;
+  --color-seoul-green-light: #8cdd96;
+  --color-seoul-green-dark: #2f9e57;
+  --color-seoul-sand: #e8dcc0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-seoul-teal: var(--color-seoul-teal);
+  --color-seoul-teal-dark: var(--color-seoul-teal-dark);
+  --color-seoul-orange: var(--color-seoul-orange);
+  --color-seoul-orange-light: var(--color-seoul-orange-light);
+  --color-seoul-green: var(--color-seoul-green);
+  --color-seoul-green-light: var(--color-seoul-green-light);
+  --color-seoul-green-dark: var(--color-seoul-green-dark);
+  --color-seoul-sand: var(--color-seoul-sand);
+  --font-sans: var(--font-noto-sans-kr);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.park-bg {
+  background: linear-gradient(
+    180deg,
+    var(--color-seoul-teal) 0%,
+    #6ed5a8 22%,
+    var(--color-seoul-green-light) 45%,
+    var(--color-seoul-green) 100%
+  );
+}
